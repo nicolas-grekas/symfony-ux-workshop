@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+        <header class="p-4 backdrop-blur-md">
+            <nav class="flex justify-between items-center text-slate-50">
+                <a href="{{ path('app_radio_index') }}" class="Navbar__logo">
+                    <em>S</em>ymfony <em>FM</em>
+                </a>
+
+                <ul class="flex gap-8 justify-center font-mono text-lg font-bold">
+                    <li>
+                        <a data-turbo-action="replace" href="{{ path('app_radio_index') }}" class="text-slate-50 hover:bg-slate-200/50 flex gap-2 justify-center items-center rounded-lg pt-2 pb-2 pl-4 pr-4">
+                            <twig:UX:Icon name="radios" class="text-slate-50" style="color: black; opacity: .9; fill: none"/>
+                            <span class="uppercase">Radios</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a data-turbo-action="replace" href="{{ path('app_radio_genres') }}" class="text-slate-50 hover:bg-slate-200/50 flex gap-2 justify-center items-center rounded-lg pt-2 pb-2 pl-4 pr-4">
+                            <twig:UX:Icon name="heart" class="text-slate-50" style="color: black; opacity: .9; fill: none"/>
+                            <span class="uppercase">Genre</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a data-turbo-action="replace" href="{{ path('app_radio_years') }}" class="text-slate-50 hover:bg-slate-200/50 flex gap-2 justify-center items-center rounded-lg pt-2 pb-2 pl-4 pr-4">
+                            <twig:UX:Icon name="calendar" class="text-slate-50" style="color: black; opacity: .9; fill: none"/>
+                            <span class="uppercase">Années</span>
+                        </a>
+                    </li>
+                </ul>
+
+                <div></div>
+            </nav>
+        </header>
+        <div class="container mx-auto px-4">
+            {% block content %}
+            {% endblock %}
+        </div>
+{% endblock %}
