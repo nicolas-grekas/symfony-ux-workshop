@@ -21,11 +21,12 @@ class RadioRepository extends ServiceEntityRepository
         parent::__construct($registry, Radio::class);
     }
 
-    public function findByGenre(string $genre): array
+    public function search(string $term): array
     {
         return $this->createQueryBuilder('radio')
-            ->andWhere('radio.types LIKE :genre')
-            ->setParameter('genre', "%$genre%")
+            ->andWhere('radio.types LIKE :genre OR radio.name LIKE :name')
+            ->setParameter('genre', "%$term%")
+            ->setParameter('name', "%$term%")
             ->getQuery()
             ->getResult()
             ;

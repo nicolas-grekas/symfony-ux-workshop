@@ -3,12 +3,17 @@
 namespace App\Twig\Components;
 
 use App\Repository\RadioRepository;
-use Symfony\UX\TwigComponent\Attribute\AsTwigComponent;
+use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
+use Symfony\UX\LiveComponent\Attribute\LiveProp;
+use Symfony\UX\LiveComponent\DefaultActionTrait;
 
-#[AsTwigComponent()]
-class RadioList
+#[AsLiveComponent]
+final class RadioList
 {
-    public ?string $filter = null;
+    use DefaultActionTrait;
+
+    #[LiveProp(writable: true)]
+    public ?string $search = null;
 
     public function __construct(
         private readonly RadioRepository $radioRepository
@@ -16,10 +21,10 @@ class RadioList
 
     public function getRadios(): array
     {
-        if (null === $this->filter) {
+        if (null === $this->search) {
             return $this->radioRepository->findAll();
         }
 
-        return $this->radioRepository->findByGenre($this->filter);
+        return $this->radioRepository->search($this->search);
     }
 }
