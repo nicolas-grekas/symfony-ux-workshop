@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    <turbo-frame id="content">
     <header class="p-4 backdrop-blur-md">
         <twig:NavBar/>
     </header>
@@ -8,5 +9,6 @@
         {% block content %}
         {% endblock %}
     </div>
+    </turbo-frame>
     <twig:RadioPlayer/>
 {% endblock %}
