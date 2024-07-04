@@ -1,4 +1,5 @@
 <div
+        data-controller="player"
         class="fixed bottom-0 left-0 w-full h-20 bg-slate-800/90 drop-shadow-lg shadow-cyan-500/50 shadow-[10px_-1px_20px_2px_#00000024] flex justify-between">
     <div class="flex items-center gap-2" id="player-radio">
         <img class="h-full w-auto rounded" src="https://via.placeholder.com/50" alt="logo de la radio">
@@ -11,7 +12,7 @@
         <twig:PlayerButton/>
     </div>
     <div class="hidden">
-        <audio controls>
+        <audio>
             <source type="audio/mpeg">
             Your browser does not support the audio element.
         </audio>
