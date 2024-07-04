@@ -16,9 +16,7 @@ class RadioController extends AbstractController
     #[Route('/')]
     public function index(): Response
     {
-        return $this->render('home.html.twig', [
-            'radio' => $this->radioRepository->findOneBy(['name' => 'NOSTALGIE'])
-        ]);
+        return $this->render('home.html.twig');
     }
 
     #[Route('/genre')]

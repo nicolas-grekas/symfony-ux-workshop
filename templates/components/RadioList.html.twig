@@ -1,0 +1,13 @@
+<div>
+    {% for radio in this.radios %}
+    <div>
+        <div>
+            <img src="{{ radio.logo }}" alt="{{ radio.name }} ">
+        </div>
+        <button>
+            <twig:UX:Icon name="pause"/>
+            <twig:UX:Icon name="play"/>
+        </button>
+    </div>
+    {% endfor %}
+</div>
