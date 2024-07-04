@@ -1,10 +1,31 @@
 import { Controller } from '@hotwired/stimulus';
 
 export default class extends Controller {
-    static targets = ['play', 'pause'];
+    static targets = ['audio', 'play', 'pause'];
 
     initialize() {
         this.playing = false;
+    }
+
+    play(event) {
+        const source = event.detail.source;
+
+        this.audioTarget.src = source;
+
+        this.audioTarget.load();
+        this.audioTarget.play();
+        this.playing = true;
+
+        this.playTarget.classList.remove('hidden');
+        this.pauseTarget.classList.add('hidden');
+    }
+
+    pause() {
+        this.audioTarget.pause();
+        this.playing = false;
+
+        this.playTarget.classList.add('hidden');
+        this.pauseTarget.classList.remove('hidden');
     }
 
     toggle(event) {

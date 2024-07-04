@@ -1,6 +1,8 @@
 import { Controller } from '@hotwired/stimulus';
 
 export default class extends Controller {
+    static values = {source: String};
+
     static targets = ['play', 'pause'];
 
     initialize() {
@@ -11,6 +13,12 @@ export default class extends Controller {
         event.stopImmediatePropagation();
 
         if (!this.playing) {
+            this.dispatch('playRadio', {
+                detail: {
+                    source: this.sourceValue
+                }
+            });
+
             this.playTarget.classList.toggle('hidden');
             this.pauseTarget.classList.toggle('hidden');
             this.playing = true;
@@ -19,6 +27,8 @@ export default class extends Controller {
         }
 
         if (this.playing) {
+            this.dispatch('pauseRadio');
+
             this.playTarget.classList.toggle('hidden');
             this.pauseTarget.classList.toggle('hidden');
             this.playing = false;
