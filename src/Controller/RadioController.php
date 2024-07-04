@@ -2,10 +2,13 @@
 
 namespace App\Controller;
 
+use App\Entity\Radio;
 use App\Repository\RadioRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\UX\Turbo\TurboBundle;
 
 class RadioController extends AbstractController
 {
@@ -29,5 +32,15 @@ class RadioController extends AbstractController
     public function years(): Response
     {
         return $this->render('years.html.twig');
+    }
+
+    #[Route('/player/{radio}')]
+    public function playerStream(Request $request, Radio $radio): Response
+    {
+        $request->setRequestFormat(TurboBundle::STREAM_FORMAT);
+
+        return $this->render('player.stream.html.twig', [
+            'song' => $radio->getCurrentSong()
+        ]);
     }
 }

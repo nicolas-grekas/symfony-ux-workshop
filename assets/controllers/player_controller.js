@@ -9,8 +9,11 @@ export default class extends Controller {
 
     play(event) {
         const source = event.detail.source;
+        const stream = event.detail.stream;
 
         this.audioTarget.src = source;
+
+        Turbo.visit(stream);
 
         this.audioTarget.load();
         this.audioTarget.play();

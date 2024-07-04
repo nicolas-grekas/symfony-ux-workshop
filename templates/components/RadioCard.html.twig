@@ -3,6 +3,7 @@
         data-controller="radio"
         data-action="click->radio#toggle"
         data-radio-source-value="{{ radio.url }}"
+        data-radio-stream-value="{{ path('app_radio_playerstream', {radio: radio.id}) }}"
 >
     {% block content %}
     {% endblock %}

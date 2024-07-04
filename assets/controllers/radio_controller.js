@@ -1,7 +1,7 @@
 import { Controller } from '@hotwired/stimulus';
 
 export default class extends Controller {
-    static values = {source: String};
+    static values = {source: String, stream: String};
 
     static targets = ['play', 'pause'];
 
@@ -15,7 +15,8 @@ export default class extends Controller {
         if (!this.playing) {
             this.dispatch('playRadio', {
                 detail: {
-                    source: this.sourceValue
+                    source: this.sourceValue,
+                    stream: this.streamValue
                 }
             });
 
